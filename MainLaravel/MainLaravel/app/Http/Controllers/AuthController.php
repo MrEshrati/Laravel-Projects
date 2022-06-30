@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller{
+    
+    public function login_show(){
+
+        return view('auth.login');
+    }
+
+    public function login(LoginRequest $request){
+
+        $user = User::query() -> where('email' , '=' , $request 
+        -> safe()['email_phone'])
+        -> orWhere('phone' , "=" , $request -> safe()['email_phone']) -> first();
+    
+        if ($user){
+
+            if (Hash::check($request -> safe()['password'], $user -> password)){
+
+                Auth::login($user);
+                return redirect() -> route(('home'));
+            }
+        }
+
+        return back() -> withErrors("User Doesn't Exist");
+    }
+
+    public function register_show(){
+
+        return view('auth.register');
+    }
+
+    public function register(RegisterRequest $request){
+
+        // dd($request -> safe()->all());
+
+        $data = array_merge($request -> only(['name' , 'phone' , 'email']),
+        ['password' => Hash::make($request -> safe()['password'])]);
+
+        $user = User::query()
+        -> where('email' , '=' , $request -> safe()['email'])
+        -> orWhere('phone' , '=' , $request -> safe()['phone']) -> first();
+    
+        if($user){
+            return back() -> withErrors('user exist');
+        }
+
+        $user = User::create($data);
+
+        if($user){
+
+            return redirect() -> route('home');
+        }
+    }
+
+    public function logout(){
+
+        Auth::logout();
+        return redirect() -> route('home');
+    }
+}
