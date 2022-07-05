@@ -32,5 +32,10 @@ class CartItem extends Model
         return $this->price * $this->count;
     }
 
+    public function DiscountCalculate(){
+
+        return $this->discount * $this->count;
+    }
+
 
 }

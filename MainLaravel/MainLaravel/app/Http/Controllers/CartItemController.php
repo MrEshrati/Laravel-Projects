@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\DigitalContent;
+use App\Models\TransactionInvoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Type\Integer;
@@ -32,7 +33,7 @@ class CartItemController extends Controller
 
         $cartItem = CartItem::where('digital_content_id' , '=' , $digitalContent -> id)
                             ->where('user_id' , '=' , Auth::id()) -> first();
-                            
+        
         if ($cartItem){
             $cartItem->count++;
             $cartItem->save();
@@ -40,7 +41,8 @@ class CartItemController extends Controller
             $cart = new CartItem(
 
                [ 'price' => $digitalContent->price,
-                'discount' => $digitalContent->discount,]
+                'discount' => $digitalContent->discount,
+                'count' => 1,]
             );
 
             $user = Auth::id();
@@ -48,6 +50,7 @@ class CartItemController extends Controller
             $cart->digital_content()->associate($digitalContent);
             $cart->save();
         }
+
 
         return redirect()->back();
     }
@@ -76,5 +79,14 @@ class CartItemController extends Controller
         $Item->delete();
 
         return redirect()->back();
+    }
+
+    public function DestroyCart(){
+
+        $cart = CartItem::where('user_id' , '=' , Auth::id()) -> first();
+
+        $cart -> delete();
+
+        return redirect()-> route('dashboard');
     }
 }

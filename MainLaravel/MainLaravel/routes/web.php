@@ -7,7 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardDigitalContentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use App\Models\CartItem;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +39,14 @@ Route::group(
     ]
     ,function(){
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+        Route::resource('transactions', TransactionController::class) -> middleware('role:user');
         Route::resource('digitalproducts', ProductController::class) -> middleware('role:admin');
         Route::resource('categories' , CategoryController::class) -> middleware('role:admin');
         Route::get('/cart', [CartItemController::class , 'index'])->name('cart');
         Route::get('/cart/add/{digitalContent}', [CartItemController::class , 'add'])->name('addCart');
         Route::get('/cart/decrease/{digitalContent}', [CartItemController::class , 'Decrease_Count'])->name('cart.decrease');
         Route::get('/cart/delete/{digitalContent}', [CartItemController::class , 'DeleteItem'])->name('cart.delete');
-
+        Route::get('/cart/deletecart' , [CartItemController::class , 'DestroyCart']) -> name('cart.destroy');
 
 
     });
