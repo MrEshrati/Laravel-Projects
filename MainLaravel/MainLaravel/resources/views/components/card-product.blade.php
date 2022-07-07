@@ -1,4 +1,4 @@
-<div>        
+{{-- <div>        
     <div class="container my-12 mx-auto px-4 md:px-12">
 
         <div class="flex flex-wrap -mx-1 lg:-mx-4">
@@ -50,4 +50,33 @@
         </div>
     </div>
 </div>
+ --}}
 
+
+ <div id="game-div" class="flex h-screen items-center justify-center bg-gradient-to-r from-rose-100 to-teal-100 px-4" style="width: 100%;display: flex;flex-wrap: wrap">
+    
+    @foreach ($products as $product)
+        
+        <a href="#"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+            <img id="comp-img" class="mb-2" src='{{ $product->image_url }}' alt="company" />
+            <small class="mt-2 ml-3 text-white text-xs">{{ $product->digital_content_type->name }}</small>
+            <h1 class="ml-3 mt-1 text-2xl font-medium text-yellow-300 pb-2">{{ $product->name }}</h1>
+            <p class="mt-1 ml-3 text-sm tracking-tight font-light text-white leading-6">{{ $product->description }}</p>
+        </div></a>
+    @endforeach
+</div>
+
+
+{{-- <div class="relative flex min-h-screen flex-col justify-center bg-gradient-to-r from-rose-100 to-teal-100">
+    <!-- card -->
+    <div class="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
+      <!-- img -->
+      <img class="aspect-video w-96 rounded-t-2xl object-cover object-center" src="https://images.pexels.com/photos/3311574/pexels-photo-3311574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=1">
+      <!-- text information -->
+      <div class="p-4">
+        <small class="text-blue-400 text-xs">Automobile company</small>
+        <h1 class="text-2xl font-medium text-slate-600 pb-2">Dodge Car</h1>
+        <p class="text-sm tracking-tight font-light text-slate-400 leading-6">Dodge is an American brand of automobiles and a division of Stellantis, based in Auburn Hills, Michigan..</p>
+      </div>
+    </div>
+  </div> --}}

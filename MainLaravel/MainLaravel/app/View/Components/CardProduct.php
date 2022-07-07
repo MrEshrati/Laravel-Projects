@@ -17,7 +17,7 @@ class CardProduct extends Component
 
     public function __construct(){
         
-        $this -> products = DigitalContent::paginate(3);
+        $this -> products = DigitalContent::paginate(6);
     }
 
     /**

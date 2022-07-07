@@ -24,6 +24,7 @@ class DigitalContentSeeder extends Seeder
                 'description' => $faker -> sentence(5 , true),
                 'price' => 80000,
                 'discount' => 50000,
+                'image_url' => 'storage/contents/cover.2jpeg',
             ],
 
             [
@@ -32,6 +33,7 @@ class DigitalContentSeeder extends Seeder
                 'description' => $faker -> sentence(5 , true),
                 'price' => 60000,
                 'discount' => 20000,
+                'image_url' => 'storage/contents/cover.2jpeg',
             ],
 
             [
@@ -40,6 +42,7 @@ class DigitalContentSeeder extends Seeder
                 'description' => $faker -> sentence(5 , true),
                 'price' => 100000,
                 'discount' => 40000,
+                'image_url' => 'storage/contents/cover.2jpeg',
             ],
 
             [
@@ -48,6 +51,7 @@ class DigitalContentSeeder extends Seeder
                 'description' => $faker -> sentence(5 , true),
                 'price' => 55000,
                 'discount' => 15000,
+                'image_url' => 'storage/contents/cover.2jpeg',
             ],
         
         ];
