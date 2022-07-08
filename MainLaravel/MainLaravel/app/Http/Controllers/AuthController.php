@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller{
     
@@ -55,6 +56,7 @@ class AuthController extends Controller{
         }
 
         $user = User::create($data);
+        $user->syncRoles(Role::findByName('User'));
 
         if($user){
 

@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
      */
     public function run(){
         
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'User']);
 
         $admin = ['name' => 'admin' , 'email' => 'REDACTED' , 
         'password' => Hash::make('REDACTED')];
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         $admin = User::create($admin);
         $user = User::create($user);
 
-        $admin -> assignRole(Role::findByName('admin'));
-        $user -> assignRole(Role::findByName('user'));
+        $admin -> assignRole(Role::findByName('Admin'));
+        $user -> assignRole(Role::findByName('User'));
     }
 }

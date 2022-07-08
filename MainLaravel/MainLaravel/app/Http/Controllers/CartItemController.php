@@ -13,6 +13,8 @@ class CartItemController extends Controller
 {
     public function index(){
 
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
         $carts = CartItem::where('user_id' , '=' , Auth::id()) -> get();
 
         $counts = 0;
@@ -26,7 +28,7 @@ class CartItemController extends Controller
             $discounts += $cart->discount;
         }
 
-        return view('dashboard.cart' , compact(['carts','counts','prices','discounts']));
+        return view('dashboard.cart' , compact(['carts','counts','prices','discounts','user','roles']));
     }
 
     public function add(DigitalContent $digitalContent){

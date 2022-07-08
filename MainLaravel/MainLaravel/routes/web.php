@@ -39,9 +39,9 @@ Route::group(
     ]
     ,function(){
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-        Route::resource('transactions', TransactionController::class) -> middleware('role:user');
-        Route::resource('digitalproducts', ProductController::class) -> middleware('role:admin');
-        Route::resource('categories' , CategoryController::class) -> middleware('role:admin');
+        Route::resource('transactions', TransactionController::class) -> middleware('role:User');
+        Route::resource('digitalproducts', ProductController::class) -> middleware('role:Admin');
+        Route::resource('categories' , CategoryController::class) -> middleware('role:Admin');
         Route::get('/cart', [CartItemController::class , 'index'])->name('cart');
         Route::get('/cart/add/{digitalContent}', [CartItemController::class , 'add'])->name('addCart');
         Route::get('/cart/decrease/{digitalContent}', [CartItemController::class , 'Decrease_Count'])->name('cart.decrease');

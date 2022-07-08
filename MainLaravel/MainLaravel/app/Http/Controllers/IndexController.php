@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\DigitalContent;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,8 @@ class IndexController extends Controller{
 
     public function read_more(DigitalContent $digitalproduct){
 
-
-        return view('read_more' , compact('digitalproduct'));
+        $carts = CartItem::all();
+        return view('read_more' , compact(['digitalproduct' , 'carts']));
     }
 
 }

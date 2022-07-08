@@ -67,7 +67,7 @@
     @yield('style')
 
 </head>    
-<body>
+<body class="bg-gradient-to-r from-rose-100 to-teal-100">
     @include('Layout.header')
 
     @yield('body')
