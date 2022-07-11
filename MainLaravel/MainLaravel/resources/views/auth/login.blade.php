@@ -2,9 +2,9 @@
 
 @section('style')
 <style>
-  * {
+  /* * {
     font-family: "Poppins";
-  }
+  } */
 
   body {
     -webkit-user-select: none;
@@ -153,7 +153,7 @@
       <label class="text-grey-900" for="email">Email Address or Phone</label>
       <div class="sec-2">
         <ion-icon name="mail-outline" role="img" class="md hydrated" aria-label="mail outline"></ion-icon>
-        <input type="email" name="email_phone" placeholder="Example@mail.com">
+        <input style=" float: left; width: 75%;" type="email" name="email_phone" placeholder="Example@mail.com">
         <br>
         @if ($errors -> has('email_phone'))
           <small class="text-red">
@@ -166,7 +166,7 @@
       <label class="text-grey-900" for="password">Password</label>
       <div class="sec-2">
         <ion-icon name="lock-closed-outline" role="img" class="md hydrated" aria-label="lock closed outline"></ion-icon>
-        <input class="pas" type="password" name="password" placeholder="············">
+        <input style=" float: left; width: 75%;" class="pas" type="password" name="password" placeholder="············">
         <ion-icon class="show-hide md hydrated" name="eye-outline" role="img" aria-label="eye outline"></ion-icon>
         <br>
         @if ($errors -> has('password'))
@@ -176,8 +176,8 @@
         @endif
       </div>
     </div>
-    <button class="login hover:bg-blue-800">Login </button>
-    <div class="footer"><a href="{{ route('register') }}"><span class="hover:text-yellow-300">Signup</span></a><a href="#"><span class="hover:text-yellow-300">Forgot Password?</span></a></div>
+    <button style="transition: 0.2s ease-in-out" class="login hover:bg-blue-800">Login </button>
+    <div class="footer"><a href="{{ route('register') }}"><span style="transition: 0.2s ease-in-out" class="hover:text-yellow-300">Signup</span></a><a href="#"><span style="transition: 0.2s ease-in-out" class="hover:text-yellow-300">Forgot Password?</span></a></div>
   </div>
 </form>  
 @endsection

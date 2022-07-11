@@ -471,8 +471,8 @@ class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
     </div>
   </div>
 
-  <button class="login hover:bg-blue-800" type="submit">Register</button>
-  <div class="footer"><a href="{{ route('login') }}"><span class="text-yellow-300 btn hover:bg-yellow-300">Already have an account ? Login</span></a></div>
+  <button style="transition: 0.2s ease-in-out" class="login hover:bg-blue-800" type="submit">Register</button>
+  <div class="footer"><a href="{{ route('login') }}"><span style="transition: 0.2s ease-in-out" class="text-yellow-300 btn hover:bg-yellow-300">Already have an account ? Login</span></a></div>
 </form>  
 
 @endsection

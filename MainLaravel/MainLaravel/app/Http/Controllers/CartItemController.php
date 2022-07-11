@@ -82,13 +82,4 @@ class CartItemController extends Controller
 
         return redirect()->back();
     }
-
-    public function DestroyCart(){
-
-        $cart = CartItem::where('user_id' , '=' , Auth::id()) -> first();
-
-        $cart -> delete();
-
-        return redirect()-> route('dashboard');
-    }
 }

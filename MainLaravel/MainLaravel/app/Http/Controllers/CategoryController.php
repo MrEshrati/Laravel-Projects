@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,9 @@ class CategoryController extends Controller
     public function index(){
         
         $categories = Category::all();
-        return view('dashboard.categoryList' , compact('categories'));
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.categoryList' , compact(['categories' , 'user' , 'roles']));
     }
 
     /**
@@ -27,7 +30,9 @@ class CategoryController extends Controller
     public function create(){
         
         $categories = Category::all();
-        return view('dashboard.createCategory' , compact('categories'));
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.createCategory' , compact(['categories' , 'user' , 'roles']));
 
     }
 
@@ -70,8 +75,10 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $categories = Category::all();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
 
-        return view('dashboard.editCategory' , compact(['category' , 'categories']));
+        return view('dashboard.editCategory' , compact(['category' , 'categories' , 'user' , 'roles']));
     }
 
     /**

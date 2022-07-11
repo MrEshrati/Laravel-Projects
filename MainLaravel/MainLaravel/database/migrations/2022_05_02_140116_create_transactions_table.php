@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table -> integer('status') -> default(1);
             $table -> text('description') -> nullable();
             $table -> string('token') -> default(111111);
-            $table -> string('delivery_name') -> default('newDelivery');
+            $table -> string('delivery_name');
             $table -> string('postal_code');
             $table -> text('address');
             $table -> decimal('price' , 10 , 2) -> default(0);

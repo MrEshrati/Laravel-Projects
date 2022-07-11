@@ -8,10 +8,10 @@
                 <div class="w-full relative">
                     <div class="md:mt-6">
                         <div class="text-center font-semibold text-black">
-                            New Company ?
+                            New Product ?
                         </div>
                         <div class="text-center font-base text-black">
-                        Add Your Company Here
+                        Add Your Product Here
                         </div>
                         <div class="mt-3">
                             <div class="mx-auto max-w-lg ">

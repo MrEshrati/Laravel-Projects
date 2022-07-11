@@ -46,14 +46,22 @@
           <div class="hidden lg:block lg:ml-2">
             <div class="flex">
               @auth
-                
-                <a href="{{ route('home') }}" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
-                <a href="{{ route('dashboard') }}" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
-                <a href="{{ route('cart') }}" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Cart </a>
 
+                @role('User')
+          
+                  <a href="{{ route('home') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
+                  <a href="{{ route('dashboard') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
+                  <a href="{{ route('cart') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Cart </a>
+                @endrole
+
+                @role('Admin')
+
+                  <a href="{{ route('home') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
+                  <a href="{{ route('dashboard') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
+                @endrole
                 @else
 
-                <a href="{{ route('home') }}" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
+                <a href="{{ route('home') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-yellow-300 font-semibold hover:bg-yellow-300 hover:text-black transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
 
               @endauth
 
@@ -77,11 +85,12 @@
         <div class="flex items-start px-4 py-6">
           @auth
 
-            <a href="{{ route('logout') }}"><img class="w-9 h-9 rounded-full object-cover mr-4 shadow" src="https://cdn.iconscout.com/icon/premium/png-512-thumb/logout-logout-move-logout-next-logout-direction-1-60709.png" alt="avatar"></a>
+            <a href="{{ route('logout') }}"><svg class="text-yellow-300 hover:text-black hover:bg-yellow-300 p-2" style="transition: 0.2s ease-in-out;height: 40px;border-radius: 20px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
 
             @else
 
-            <a href="{{ route('login.show') }}"><img class="w-7 h-7 rounded-full object-cover mr-4 shadow" src="https://cdn1.iconfinder.com/data/icons/vibrancie-action/30/action_081-account-user-profile-avatar-512.png" alt="avatar"></a>
+            <a href="{{ route('login.show') }}"><svg class="text-yellow-300 hover:text-black hover:bg-yellow-300 p-1" style="transition: 0.2s ease-in-out;height: 2em;border-radius: 20px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle fill="none" cx="12" cy="7" r="3"></circle><path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z"></path></svg></a>
 
           @endauth
         </div>

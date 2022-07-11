@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\DigitalContent;
 use App\Models\DigitalContentType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -15,7 +16,9 @@ class ProductController extends Controller
     public function index(){
         
         $products = DigitalContent::all();
-        return view('dashboard.productsList' , compact('products'));
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.productsList' , compact(['products' , 'user' , 'roles']));
     }
 
 
@@ -23,7 +26,9 @@ class ProductController extends Controller
         
         $types = DigitalContentType::all();
         $categories = Category::all();
-        return view('dashboard.createProduct' , compact(['types' , 'categories']));
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.createProduct' , compact(['types' , 'categories' , 'user' , 'roles']));
     }
 
     public function store(ProductRequest $request){
@@ -62,8 +67,10 @@ class ProductController extends Controller
         $cats = $product -> category -> pluck('id') -> toarray();
         $cats = implode(',' , $cats);
         $categories = Category::all();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
 
-        return view('dashboard.editProduct' , compact(['product' , 'types' , 'cats' , 'categories']));
+        return view('dashboard.editProduct' , compact(['product' , 'types' , 'cats' , 'categories' , 'user' , 'roles']));
 
     }
 
@@ -93,9 +100,8 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        
         $product=DigitalContent::where('id','=',$id);
         $product->delete();
-        return redirect()->route('digitalproducts.index');
+        return redirect()->back();
     }
 }

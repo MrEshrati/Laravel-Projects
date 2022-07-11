@@ -13,6 +13,7 @@ class Transaction extends Model{
 
         'address',
         'postal_code',
+        'delivery_name',
         'price',
         'discount',
         'description',

@@ -16,12 +16,10 @@ class TransactionRequest extends FormRequest
     {
         return [
             
+            'delivery_name' => ['required'],
             'address' => ['required' , 'max:100'],
             'postal_code' => ['required' , 'max:20'],
             'description' => [],
-            'price' => [],
-            'discount' => [],
-            'user_id' => [],
 
         ];
     }

@@ -11,14 +11,46 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller{
 
-    public function Checkout(){
+    public function Checkout(TransactionRequest $request){
 
-        
+        $transaction = Transaction::create($request -> safe() -> all());
+        $transaction->user()->associate(auth()->user());
+        $carts = CartItem::where('user_id' , '==' , Auth::id()) ->get();
+        $prices = 0;
+        $discounts = 0;
+        foreach($carts as $cart){
+
+            $transaction_invoices = new TransactionInvoice([
+
+                'price' => $cart->price,
+                'discount' => $cart->discount,
+                'count' => $cart->count,
+            ]);
+
+            $transaction_invoices->transaction()->associate($transaction->id);
+            $transaction_invoices->digital_content()->associate($cart->digital_content_id);
+            $transaction_invoices->save();
+            $cart->delete();
+
+            $prices += $cart->price;
+            $discounts += $carts->discount;
+        }
+
+        $transaction->price = $prices;
+        $transaction->discount = $discounts;
+        $transactionSave = $transaction->save();
+        if (!$transactionSave){
+
+            return back()->withErrors('Transaction Not Created');
+        }
     }
 
     public function index(){
         
-        return view('dashboard.transaction');
+        $transactions = Transaction::all();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.transaction' , compact(['transactions' , 'user' , 'roles']));
     }
 
 
@@ -28,20 +60,7 @@ class TransactionController extends Controller{
 
 
     public function store(TransactionRequest $request){
-         
-        $tran = Transaction::create($request -> safe() ->all());
-        $tran -> user() -> associate(Auth::id()) -> first();
-        $tran -> save();
-
-        $carts = CartItem::where('user_id' , '=' , Auth::id()) -> get();
-
-        $invoice = new TransactionInvoice(
-
-            [ 'digital_content_id' => $carts,
-                   ]
-                );
-
-        return redirect()-> route('cart.destroy');
+        
     }
 
 
