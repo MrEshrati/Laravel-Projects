@@ -6,6 +6,7 @@ use App\Http\Requests\TransactionRequest;
 use App\Models\CartItem;
 use App\Models\Transaction;
 use App\Models\TransactionInvoice;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class TransactionController extends Controller{
 
         $transaction = Transaction::create($request -> safe() -> all());
         $transaction->user()->associate(auth()->user());
-        $carts = CartItem::where('user_id' , '==' , Auth::id()) ->get();
+        $carts = CartItem::where('user_id' , '=' , Auth::id()) ->get();
         $prices = 0;
         $discounts = 0;
         foreach($carts as $cart){
@@ -27,13 +28,13 @@ class TransactionController extends Controller{
                 'count' => $cart->count,
             ]);
 
-            $transaction_invoices->transaction()->associate($transaction->id);
+            $transaction_invoices->transactions()->associate($transaction->id);
             $transaction_invoices->digital_content()->associate($cart->digital_content_id);
             $transaction_invoices->save();
             $cart->delete();
 
             $prices += $cart->price;
-            $discounts += $carts->discount;
+            $discounts += $cart->discount;
         }
 
         $transaction->price = $prices;
@@ -43,6 +44,18 @@ class TransactionController extends Controller{
 
             return back()->withErrors('Transaction Not Created');
         }
+
+        $tran = Transaction::all();
+
+        return view('dashboard.payment' , compact('tran'));
+    }
+
+    public function AdminTransaction(User $user){
+
+        $transactions = Transaction::where('user_id' , '=' , $user->id)->get();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.transaction' , compact(['user' , 'roles' , 'transactions']));
     }
 
     public function index(){

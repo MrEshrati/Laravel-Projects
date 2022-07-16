@@ -11,7 +11,7 @@
     
     @foreach ($allUsers as $allUser)
         
-        @if($allUser->name != 'admin')
+        @if($allUser->name != $user->name && $allUser->name != 'admin')
             
             <div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl shadow-md duration-200 hover:scale-105 hover:shadow-xl">
                 <h1 class="ml-1 mt-5 text-2xl font-medium text-yellow-300">{{ $allUser->name }}</h1>
@@ -21,7 +21,14 @@
                         @method("delete")
                         <button style="margin-left: 8px" type="submit"><svg class="text-red-600 hover:bg-red-600 hover:text-white" style="padding: 5px;border-radius: 15px;transition: 0.2s ease-in-out" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"></path><path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"></path></svg></button>
                     </form>
-                    <a href="{{ route('categories.edit' , $allUser) }}"><svg class="text-yellow-500 hover:bg-yellow-500 hover:text-white" style="padding: 5px;border-radius: 15px;transition: 0.2s ease-in-out" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zM16.045 4.401l1.587 1.585-1.59 1.584-1.586-1.585L16.045 4.401zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zM4 20H20V22H4z"></path></svg></a>
+                    <a href="{{ route('adminTran' , $allUser) }}">
+                    
+                        <svg class="text-yellow-500 hover:bg-yellow-500 hover:text-white" style="padding: 5px;border-radius: 15px;transition: 0.2s ease-in-out" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z"></path></svg>
+                    </a>
+
+                    <a href="{{ route('users.show' , $allUser) }}">
+                    
+                        <svg class="text-blue-600 hover:bg-blue-600 hover:text-white" style="padding: 5px;border-radius: 15px;transition: 0.2s ease-in-out" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path></svg></a>
                 </div>
             </div>
             @endif

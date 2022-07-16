@@ -10,9 +10,17 @@ class TransactionInvoice extends Model{
 
     use HasFactory;
 
+    protected $fillable = [
+
+        'price',
+        'discount',
+        'count',
+
+    ];
+
     public function transactions(){
 
-        return $this -> belongsTo(Transaction::class);
+        return $this -> belongsTo(Transaction::class , 'transaction_id');
     }
 
     public function digital_content(){

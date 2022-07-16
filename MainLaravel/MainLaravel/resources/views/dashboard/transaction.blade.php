@@ -12,8 +12,8 @@
     @foreach ($transactions as $tran)
         
             <div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl shadow-md duration-200 hover:scale-105 hover:shadow-xl">
-                <small class="mt-2 ml-3 text-white text-xs">{{ $tran->user->name }}</small>
-                <h1 class="ml-1 mt-5 text-2xl font-medium text-yellow-300">{{ $tran->name }}</h1>
+                <small class="mt-2 ml-1 text-white text-xs">{{ $tran->user->name }}</small>
+                <h1 class="ml-1 mt-3 text-2xl font-medium text-yellow-300">{{ $tran->delivery_name }}</h1>
                 <div style="margin-left: 8%;margin-top: 14px;justify-content: space-around;display: flex;width: 83%;height: 100%">
                     <form method="POST" action="{{ route('transactions.destroy' , $tran) }}">
                         @csrf

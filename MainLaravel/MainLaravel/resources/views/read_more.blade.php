@@ -156,56 +156,69 @@
                 </div>
                 <div>
                   <span class=" text-gray-500 mt-3">{{ $digitalproduct->price }}</span>
-                </div>  
-                <div class="flex items-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 mt-8 md:mt-16">
-                  
-                  @if(count($carts) === 0)
-                    
-                    <a href="{{ route('addCart' , $digitalproduct) }}">
-                      <button class="btn border btn-danger">Add to Cart</button>
-                    </a>
-
-                  @else
-
-
-                    @foreach ($carts as $cart)
-                  
-                    @if($digitalproduct->id === $cart->digital_content_id)
-                      
-                      <div style="box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.7);align-items: center;justify-content: space-between;display: flex;height: 50px;width: 120px;border-radius: 5px;padding: 5px">
-                        
-                        @if($cart->count < 2)
-
-                          <a href="{{ route('cart.delete' , $digitalproduct) }}"><svg aria-hidden="true" data-prefix="far" data-icon="trash-alt" class="w-4 text-red-600 hover:text-red-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M268 416h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12zM432 80h-82.41l-34-56.7A48 48 0 00274.41 0H173.59a48 48 0 00-41.16 23.3L98.41 80H16A16 16 0 000 96v16a16 16 0 0016 16h16v336a48 48 0 0048 48h288a48 48 0 0048-48V128h16a16 16 0 0016-16V96a16 16 0 00-16-16zM171.84 50.91A6 6 0 01177 48h94a6 6 0 015.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12z"/></svg></a>
-                          <p>{{ $cart->count }}</p>
-                          <a href="{{ route('addCart' , $digitalproduct) }}">
-                            <img width="20px" height="20px" src="https://www.pngkey.com/png/full/6-60004_plus-sign-images-clipart-best-2hluoq-clipart-red.png">
-                          </a>
-
-                        @else
-
-                          <a href="{{ route('cart.decrease', $digitalproduct) }}"><img width="25px" height="25px" src="https://www.pngall.com/wp-content/uploads/5/Red-Minus-PNG-File.png"></a>
-                          <p>{{ $cart->count }}</p>
-                          <a href="{{ route('addCart' , $digitalproduct) }}">
-                            <img width="20px" height="20px" src="https://www.pngkey.com/png/full/6-60004_plus-sign-images-clipart-best-2hluoq-clipart-red.png">
-                          </a>
-                        @endif
-
-                      </div>
-                    @else
-                      <a href="{{ route('addCart' , $digitalproduct) }}">
-                        <button class="btn border btn-danger">Add to Cart</button>
-                      </a>
-                    @endif
-
-                  @endforeach
-
-                  @endif
-                  
-
                 </div>
+                
+                @auth
+
+                  @role('User')  
+                    <div class="flex items-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 mt-8 md:mt-16">
+                    
+                      @if(count($carts) === 0)
+                      
+                        <a href="{{ route('addCart' , $digitalproduct) }}">
+                          <button class="btn border btn-danger">Add to Cart</button>
+                        </a>
+
+                      @else
+
+
+                        @foreach ($carts as $cart)
+
+                          @if($digitalproduct->id === $cart->digital_content_id)
+                          
+                            <div style="box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.7);align-items: center;justify-content: space-between;display: flex;height: 50px;width: 120px;border-radius: 5px;padding: 5px">
+                            
+                              @if($cart->count < 2)
+
+                                <a href="{{ route('cart.delete' , $digitalproduct) }}"><svg aria-hidden="true" data-prefix="far" data-icon="trash-alt" class="w-4 text-red-600 hover:text-red-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M268 416h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12zM432 80h-82.41l-34-56.7A48 48 0 00274.41 0H173.59a48 48 0 00-41.16 23.3L98.41 80H16A16 16 0 000 96v16a16 16 0 0016 16h16v336a48 48 0 0048 48h288a48 48 0 0048-48V128h16a16 16 0 0016-16V96a16 16 0 00-16-16zM171.84 50.91A6 6 0 01177 48h94a6 6 0 015.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12z"/></svg></a>
+                                <p>{{ $cart->count }}</p>
+                                <a href="{{ route('addCart' , $digitalproduct) }}">
+                                <img width="20px" height="20px" src="https://www.pngkey.com/png/full/6-60004_plus-sign-images-clipart-best-2hluoq-clipart-red.png">
+                                </a>
+
+                              @else
+
+                              <a href="{{ route('cart.decrease', $digitalproduct) }}"><img width="25px" height="25px" src="https://www.pngall.com/wp-content/uploads/5/Red-Minus-PNG-File.png"></a>
+                              <p>{{ $cart->count }}</p>
+                                <a href="{{ route('addCart' , $digitalproduct) }}">
+                                <img width="20px" height="20px" src="https://www.pngkey.com/png/full/6-60004_plus-sign-images-clipart-best-2hluoq-clipart-red.png">
+                              </a>
+                              @endif
+
+                            </div>
+                          @elseif(count($carts) === 1)
+
+                            
+                          @endif
+
+                      @endforeach
+
+                      @endif
+                    
+
+                    </div>
+                  @endrole
+                
+                @else
+                  <div class="mt-5">
+                    <a href="{{ route('login') }}">
+                      <button class="btn border btn-danger">Login to Buy</button>
+                    </a>
+                  </div>
+                @endauth
+                
             </div>
-        </div>
+         </div>
           
     </div>
   </main>  

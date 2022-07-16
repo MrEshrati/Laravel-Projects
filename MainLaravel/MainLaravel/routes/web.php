@@ -44,11 +44,12 @@ Route::group(
         Route::post('/transactions/checkout' , [TransactionController::class , 'Checkout']) -> name('checkout');
         Route::resource('digitalproducts', ProductController::class) -> middleware('role:Admin');
         Route::resource('categories' , CategoryController::class) -> middleware('role:Admin');
-        Route::resource('users' , UserController::class) -> middleware('role:Admin');
+        Route::resource('users' , UserController::class) -> middleware('role:Admin'); 
         Route::get('/cart', [CartItemController::class , 'index'])->name('cart');
         Route::get('/cart/add/{digitalContent}', [CartItemController::class , 'add'])->name('addCart');
         Route::get('/cart/decrease/{digitalContent}', [CartItemController::class , 'Decrease_Count'])->name('cart.decrease');
         Route::get('/cart/delete/{digitalContent}', [CartItemController::class , 'DeleteItem'])->name('cart.delete');
+        Route::get('/admintransactions/{user}', [TransactionController::class , 'AdminTransaction'])->name('adminTran')->middleware('role:Admin');
     });
 
 Route::get('/{digitalproduct}' , [IndexController::class , 'read_more']) -> name('read_more');

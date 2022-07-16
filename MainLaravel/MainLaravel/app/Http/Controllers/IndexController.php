@@ -10,6 +10,8 @@ class IndexController extends Controller{
     
     public function index(){
 
+        $carts = CartItem::all();
+
         $products = DigitalContent::all();
 
         return view('index' , compact('products'));

@@ -2,13 +2,13 @@
 
 @section('body')
 
-<form style="margin-top: 5%" action="{{ route('checkout') }}" method="POST" enctype="multipart/form-data">
+<form style="margin: 0 auto" action="{{ route('checkout') }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('POST')
-  <div class="flex justify-center my-6">
-    <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+  <div class="mt-12">
+    <div class="flex flex-col p-8 text-gray-800 bg-white shadow-lg ">
       <div class="flex-1">
-        <table class="w-full text-sm lg:text-base" cellspacing="0">
+        <table style="width: 800px" class="text-sm lg:text-base" cellspacing="0">
           <thead>
             <tr class="h-12 uppercase">
               <th class="hidden md:table-cell"></th>
@@ -37,7 +37,7 @@
                       </a>
                 </td>
                 <td class="justify-center md:justify-end md:flex mt-6">
-                  <div class="w-20 h-10">
+                  <div class="w-20">
                     <div class="relative flex flex-row w-full h-8">
                       <a href="{{ route('addCart' , $cart->digital_content) }}">  
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -71,8 +71,8 @@
           </tbody>
         </table>
         <hr class="pb-6 mt-6">
-        <div class="my-4 mt-6 -mx-2 lg:flex">
-          <div class="lg:px-2 lg:w-1/2">
+        <div style="display: flex;justify-content: space-evenly">
+          <div>
             <div class="p-4 bg-gray-100 rounded-full">
               <h1 class="ml-2 font-bold uppercase">Delivery Information</h1>
             </div>
@@ -112,15 +112,8 @@ bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placehold
               </div>                          
               </div>
             </div>
-            <div class="p-4 mt-6 bg-gray-100 rounded-full">
-              <h1 class="ml-2 font-bold uppercase">Instruction for seller</h1>
-            </div>
-            <div class="p-4">
-              <p class="mb-4 italic">If you have some information for the seller you can leave them in the box below</p>
-              <textarea name="description" class="w-full h-24 p-2 bg-gray-100 rounded"></textarea>
-            </div>
           </div>
-          <div class="lg:px-2 lg:w-1/2">
+          <div>
             <div class="p-4 bg-gray-100 rounded-full">
               <h1 class="ml-2 font-bold uppercase">Order Details</h1>
             </div>
