@@ -12,6 +12,37 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller{
 
+    public function ShowTran($id){
+
+        $tran = Transaction::where('id' , '=' , $id)->first();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.editTransaction' , compact(['tran' , 'user' , 'roles']));
+
+    }
+
+    public function userTran(){
+
+        $transactions = Transaction::where('user_id' , '=' , Auth::user()->id)->get();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.transaction' , compact(['transactions' , 'user' , 'roles']));
+    }
+    public function ShowInvoice($id){
+
+        $invoice = TransactionInvoice::where('transaction_id' , '=' , $id)->get();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        $allPrice = 0;
+        $allDiscount = 0;
+        foreach($invoice as $inv){
+
+            $allPrice += $inv->price;
+            $allDiscount += $inv->discount;
+        }
+        return view('dashboard.adminInvoice' , compact(['invoice' , 'user' , 'roles' , 'allPrice' , 'allDiscount']));
+    }
+
     public function Checkout(TransactionRequest $request){
 
         $transaction = Transaction::create($request -> safe() -> all());
@@ -84,7 +115,11 @@ class TransactionController extends Controller{
 
 
     public function edit($id){
-        //
+
+        $tran = Transaction::where('id' , '=' , $id)->first();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.editTransaction' , compact(['tran' , 'user' , 'roles']));
     }
 
 
@@ -94,6 +129,8 @@ class TransactionController extends Controller{
 
 
     public function destroy($id){
-        //
+        $tran = Transaction::where('id','=',$id);
+        $tran->delete();
+        return redirect()->route('transactions.index');
     }
 }

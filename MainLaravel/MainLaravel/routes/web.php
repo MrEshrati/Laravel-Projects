@@ -50,6 +50,10 @@ Route::group(
         Route::get('/cart/decrease/{digitalContent}', [CartItemController::class , 'Decrease_Count'])->name('cart.decrease');
         Route::get('/cart/delete/{digitalContent}', [CartItemController::class , 'DeleteItem'])->name('cart.delete');
         Route::get('/admintransactions/{user}', [TransactionController::class , 'AdminTransaction'])->name('adminTran')->middleware('role:Admin');
+        Route::get('/adminInvoice/{id}', [TransactionController::class , 'ShowInvoice'])->name('adminInvoice')->middleware('role:Admin');
+        Route::get('/userTran', [TransactionController::class , 'userTran'])->name('userTran')->middleware('role:User');
+        Route::get('/userInvoice/{id}', [TransactionController::class , 'ShowInvoice'])->name('userInvoice')->middleware('role:User');
+        Route::get('/userTranInfo/{id}', [TransactionController::class , 'ShowTran'])->name('userTranInfo')->middleware('role:User');
     });
 
 Route::get('/{digitalproduct}' , [IndexController::class , 'read_more']) -> name('read_more');

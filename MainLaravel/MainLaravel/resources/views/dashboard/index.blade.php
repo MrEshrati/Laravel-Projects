@@ -15,7 +15,7 @@
             <p class="p-5 text-medium mb-5 text-white">Cart</p>            
         </div></a>
 
-        <a href="{{ route('transactions.index') }}"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+        <a href="{{ route('userTran') }}"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
             <svg style="color: white" id="comp-img" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z"></path></svg>
             <p class="p-5 text-medium mb-5 text-white">Transactions</p>            
         </div></a>
@@ -42,11 +42,6 @@
         <a href="{{ route('categories.index') }}"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
             <svg style="color: white" id="comp-img" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
             <p class="p-5 text-medium mb-5 text-white">Categories</p>            
-        </div></a>
-
-        <a href="{{ route('transactions.index') }}"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
-            <svg style="color: white" id="comp-img" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z"></path></svg>
-            <p class="p-5 text-medium mb-5 text-white">Transactions</p>            
         </div></a>
 
         <a href="{{ route('users.index') }}"><div style="background-color: #222" class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">

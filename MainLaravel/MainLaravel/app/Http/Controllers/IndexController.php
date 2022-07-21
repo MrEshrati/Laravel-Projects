@@ -19,7 +19,7 @@ class IndexController extends Controller{
 
     public function read_more(DigitalContent $digitalproduct){
 
-        $carts = CartItem::all();
+        $carts = CartItem::where('digital_content_id' , '=' , $digitalproduct->id)->get();
         return view('read_more' , compact(['digitalproduct' , 'carts']));
     }
 

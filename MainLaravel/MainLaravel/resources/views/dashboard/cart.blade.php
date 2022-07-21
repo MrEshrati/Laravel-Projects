@@ -26,7 +26,7 @@
               
               <tr>
                 <td class="hidden pb-4 md:table-cell">
-                  <a href="#">
+                  <a href="{{ route('read_more' , $cart->digital_content) }}">
                     <img src="{{ $cart->digital_content->image_url }}" class="w-20 rounded" alt="Thumbnail">
                   </a>
                 </td>
@@ -44,8 +44,8 @@
                           <path fill="currentColor" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22H20A2,2 0 0,0 22,20V12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
                         </svg> 
                       </a>  
-                      <input type="number" id="CountInput" value="{{ $cart->count }}" 
-                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                      <input type="text" id="CountInput" value="{{ $cart->count }}" 
+                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" readonly/>
                       <a href="{{ route("cart.decrease" , $cart->digital_content) }}">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                           <path fill="currentColor" d="M17,13H7V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
