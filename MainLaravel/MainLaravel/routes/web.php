@@ -54,6 +54,7 @@ Route::group(
         Route::get('/userTran', [TransactionController::class , 'userTran'])->name('userTran')->middleware('role:User');
         Route::get('/userInvoice/{id}', [TransactionController::class , 'ShowInvoice'])->name('userInvoice')->middleware('role:User');
         Route::get('/userTranInfo/{id}', [TransactionController::class , 'ShowTran'])->name('userTranInfo')->middleware('role:User');
+        Route::get('/profile' , [UserController::class , 'showProfile'])->name('Profile');
     });
 
 Route::get('/{digitalproduct}' , [IndexController::class , 'read_more']) -> name('read_more');

@@ -247,19 +247,20 @@
     }
   </script>
  --}}
- <div id="view" class="h-screen w-screen flex flex-row" x-data="{ sidenav: true }">
+<div class="flex flex-row"> 
+ <div style="width: 20%;" id="view" x-data="{ sidenav: true }">
   <button @click="sidenav = true" class="p-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden">
     <svg class="w-5 h-5 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
     </svg>
   </button>
-  <div id="sidebar" style="background-color: #222;" class="bg-white md:block shadow-xl px-2 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out" @click.away="sidenav = false">
+  <div id="sidebar" style="background-color: #222;" class="h-screen w-max flex flex-row fixed bg-white md:block shadow-xl px-2 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out" @click.away="sidenav = false">
     <div class="space-y-6 md:space-y-10 mt-10"> 
       <h1 class="hidden text-yellow-300 md:block font-bold text-sm md:text-xl text-center">
         Dashboard<span class="text-white">.</span>
       </h1>
       <div id="profile" class="space-y-3">
-        <img src="https://pbs.twimg.com/profile_images/1467997254929854470/mDYbXoVl_400x400.jpg" alt="Avatar user" class="w-10 md:w-16 rounded-full mx-auto">
+        <a href="{{ route('Profile') }}"><img src="https://pbs.twimg.com/profile_images/1467997254929854470/mDYbXoVl_400x400.jpg" alt="Avatar user" class="w-10 md:w-16 rounded-full mx-auto"></a>
         <div>
           <h2 class="font-medium text-xs md:text-sm text-center text-yellow-300">
             {{ $user->name }}
@@ -332,9 +333,11 @@
 
 
   </div>
-  @yield('body')
+</div>
+<div style="width: 80%">@yield('body')</div>
 
 </div>
+
 
 <script src="js/graph.js" type="text/javascript"></script>
 <script>

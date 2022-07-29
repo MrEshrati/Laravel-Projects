@@ -8,12 +8,6 @@
             <div class="relative flex flex-wrap">
                 <div class="w-full relative">
                     <div>
-                        <div class="text-center font-semibold text-black">
-                            New Category ?
-                        </div>
-                        <div class="text-center font-base text-black">
-                        Add Your Category Here
-                        </div>
                         <div class="mt-3">
                             <div class="mx-auto max-w-lg ">
                                 <div class="py-1" style="margin-bottom: 2em">
@@ -30,7 +24,7 @@
 
                                 <div class="flex flex-wrap -mx-3 mb-4">
                                     <div class="w-full px-3">
-                                      <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="type">
+                                      <label class="block  px-1 text-sm text-gray-600 tracking-wide mb-2" for="type">
                                         Parent Category
                                       </label>
                                       <div class="relative  self-center">
@@ -44,12 +38,30 @@
                                                   </g>
                                               </g>
                                           </svg>
-                                          <select name="parent_id" style="margin-bottom: 2em" class="rounded border-2 border-teal-700 text-gray-600 h-14 w-full pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                              @foreach ($categories as $category)
-                                              
-                                                  <option value="{{ $category ->id }}">{{ $category ->name }}</option>
-                                  
-                                              @endforeach
+                                          <select name="parent_id" style="margin-bottom: 2em" class="rounded border-2 border-teal-700 text-black-600 h-14 w-full pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            @foreach ($categories as $cat)
+
+                                                @if($category->parent_id != null){
+                                
+                                                    @if($cat->name == $category->category->name)
+                                                    
+                                                    <option selected value="{{ $cat -> id }}">{{ $cat -> name }}</option>
+                                
+                                                @else
+                                
+                                                    <option value="{{ $cat -> id }}">{{ $cat -> name }}</option>
+                                
+                                                @endif
+                                
+                                                }
+                                
+                                                @else{
+                                
+                                                    <option value="{{ $cat -> id }}">{{ $cat -> name }}</option>
+                                                }
+                                                
+                                                @endif
+                                            @endforeach    
                                           </select>
                                       </div>
                             

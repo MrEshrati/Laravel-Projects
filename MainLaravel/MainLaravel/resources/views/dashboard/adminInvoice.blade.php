@@ -37,7 +37,7 @@
                             <tr>
                                 <td class="p-2">
                                     <a href="{{ route('read_more' , $inv->digital_content) }}">
-                                        <img src="{{ $inv->digital_content->image_url }}" class="w-20 rounded" alt="Thumbnail">
+                                        <img src="{{ asset($inv->digital_content->image_url) }}" class="w-20 rounded" alt="Thumbnail">
                                     </a>
                                 </td>
                                 <td class="p-2">

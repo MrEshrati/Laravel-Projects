@@ -63,6 +63,7 @@ class ProductController extends Controller
     public function edit($id){
         
         $product = DigitalContent::find($id);
+        $productType = DigitalContentType::where("id" , '=' , $product->digital_content_type_id)->get();
         $types = DigitalContentType::all();
         $cats = $product -> category -> pluck('id') -> toarray();
         $cats = implode(',' , $cats);
@@ -70,7 +71,7 @@ class ProductController extends Controller
         $user = Auth::user();
         $roles = $user->getRoleNames();
 
-        return view('dashboard.editProduct' , compact(['product' , 'types' , 'cats' , 'categories' , 'user' , 'roles']));
+        return view('dashboard.editProduct' , compact(['product' , 'types' , 'cats' , 'categories' , 'user' , 'roles' , 'productType']));
 
     }
 

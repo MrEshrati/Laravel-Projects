@@ -7,7 +7,7 @@
 #game-div div{ margin: 10px; width: 300px;height: 120px}
 #comp-img {height: 120px;width: 300px}</style>
 
-<div id="game-div" class=" h-screen bg-gradient-to-r from-rose-100 to-teal-100 px-4" style="align-content: center;justify-content: space-around;width: 100%;display: flex;flex-wrap: wrap;">
+<div id="game-div" class="h-max w-max bg-gradient-to-r from-rose-100 to-teal-100 px-4" style="align-content: center;justify-content: space-around;width: 100%;display: flex;flex-wrap: wrap;">
     
     @foreach ($transactions as $tran)
         @role('Admin')

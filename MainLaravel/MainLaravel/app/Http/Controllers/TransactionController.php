@@ -76,9 +76,18 @@ class TransactionController extends Controller{
             return back()->withErrors('Transaction Not Created');
         }
 
-        $tran = Transaction::all();
+        $tran = Transaction::where('id' , '=' , $transaction->id)->get();
+        $invoice = TransactionInvoice::where('transaction_id' , '=' , $transaction->id)->get();
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        $allPrice = 0;
+        $allDiscount = 0;
+        foreach($invoice as $inv){
 
-        return view('dashboard.payment' , compact('tran'));
+            $allPrice += $inv->price;
+            $allDiscount += $inv->discount;
+        }
+        return view('dashboard.payment' , compact(['allDiscount' , 'allPrice' , 'invoice' , 'tran' , 'user' , 'roles']));
     }
 
     public function AdminTransaction(User $user){

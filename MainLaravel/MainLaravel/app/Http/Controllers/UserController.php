@@ -12,6 +12,13 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
+    public function showProfile(){
+
+        $user = Auth::user();
+        $roles = $user->getRoleNames();
+        return view('dashboard.profile' , compact(['user' , 'roles']));
+    }
+
     public function index()
     {
         $allUsers = User::all();
@@ -34,7 +41,6 @@ class UserController extends Controller
 
 
     public function store(UserRequest $request){
-        
         $data = array_merge($request -> only(['name' , 'phone' , 'email']),
         ['password' => Hash::make($request -> safe()['password'])]);
 

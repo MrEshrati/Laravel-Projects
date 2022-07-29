@@ -8,10 +8,10 @@
                 <div class="w-full relative">
                     <div>
                         <div class="text-center font-semibold text-black">
-                            New Company ?
+                            New Product ?
                         </div>
                         <div class="text-center font-base text-black">
-                        Add Your Company Here
+                        Add Your Product Here
                         </div>
                         <div class="mt-3">
                             <div class="mx-auto max-w-lg ">
@@ -65,8 +65,8 @@
 
                                 <div class="flex flex-wrap -mx-3 mb-4">
                                     <div class="w-full px-3">
-                                      <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="type">
-                                        Category
+                                      <label class="block  px-1 text-sm text-gray-600 tracking-wide mb-2" for="type">
+                                        Type
                                       </label>
                                       <div class="relative  self-center">
                                           <svg class="text-white bg-teal-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
@@ -79,7 +79,7 @@
                                                   </g>
                                               </g>
                                           </svg>
-                                          <select name="type" class="rounded border-2 border-teal-700 text-gray-600 h-14 w-full pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                          <select name="type" class="rounded border-2 border-teal-700 text-black-600 h-14 w-full pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                                               @foreach ($types as $type)
                                               
                                                   <option value="{{ $type ->id }}">{{ $type ->name }}</option>
