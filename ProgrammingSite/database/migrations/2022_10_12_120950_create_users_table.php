@@ -13,16 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table -> unsignedBigInteger('company_id')->nullable();
-            $table -> string('name');
+            $table->unsignedBigInteger('usage_id')->nullable();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
 
             $table
-            -> foreign('company_id')
+            -> foreign('usage_id')
             -> references('id')
-            -> on('companies')
+            -> on('usages')
             -> cascadeOnUpdate()
             -> nullOnDelete();
         });
@@ -35,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('users');
     }
 };

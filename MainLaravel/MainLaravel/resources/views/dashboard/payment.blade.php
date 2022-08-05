@@ -67,6 +67,11 @@
                 <div>Total</div>
                 <div class="text-blue-600">{{ $allPrice - $allDiscount }}</div>
             </div>
+            @foreach ($tran as $transactions) 
+                <form method="post" action="{{ route('Payment' , $transactions) }}">
+                    <button>Pay</button>
+                </form>
+            @endforeach
 
             <div class="flex justify-end">
                 <!-- send this data to backend (note: use class 'hidden' to hide this input) -->

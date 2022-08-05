@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Http\Requests\TransactionRequest;
 use App\Models\CartItem;
 use App\Models\Transaction;
@@ -11,6 +12,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller{
+
+    public function Pay(Transaction $transaction){
+
+        $payment = new Payment();
+        $result = $payment -> sendRequest($transaction->id , $transaction->price);
+        if (isset($result->error_code)){
+
+            $transaction->status = $result->error_code;
+            $transaction->save();
+        } else {
+
+            $transaction->token = $result->id;
+            $transaction->save();
+            return redirect($result->link);
+        }
+    }
+
+    public function callback(Request $request){
+        $token = $request -> input('id');
+        $transaction_id = $request -> input('order_id');
+        $transaction = Transaction::where([['id' , $transaction_id] , ['token' , $token]])->first();
+        if (isset($request->error_code)){
+
+            $transaction -> status = $request->error_code;
+            $transaction -> save();
+            return redirect('/')->with(['message' , $request->message]);
+        } else {
+
+            $transaction -> status = $request->status;
+            $transaction -> save();
+            return redirect('/')->with(['message' , $request->status]);
+
+        }
+
+    }
 
     public function ShowTran($id){
 

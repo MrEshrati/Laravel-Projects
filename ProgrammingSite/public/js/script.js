@@ -4,7 +4,7 @@ window.onload = function() {
 
 var typed = new Typed('.auto-type' , {
 
-    strings: ['Python ?' , 'JavaScript ?' , 'CSS ?' , 'PHP ?' , 'Java ?'],
+    strings: ['Python ?' , 'C# ?' , 'JavaScript ?' , 'CSS ?' , 'PHP ?' , 'Java ?'],
     typeSpeed: 200,
     backSpeed: 150,
     loop: true

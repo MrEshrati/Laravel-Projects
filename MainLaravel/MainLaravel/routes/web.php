@@ -33,6 +33,8 @@ Route::get('/register' , [AuthController::class , 'register_show']) -> name('reg
 Route::post('/register' , [AuthController::class , 'register']) -> name('register');
 
 Route::get('/logout' , [AuthController::class , 'logout']) -> name('logout');
+Route::post('/pay/{transaction}' , [TransactionController::class , 'Pay'])->name('Payment');
+Route::post('/callback' , [TransactionController::class , 'Callback'])->name('callback');
 
 Route::group(
     [
@@ -55,6 +57,7 @@ Route::group(
         Route::get('/userInvoice/{id}', [TransactionController::class , 'ShowInvoice'])->name('userInvoice')->middleware('role:User');
         Route::get('/userTranInfo/{id}', [TransactionController::class , 'ShowTran'])->name('userTranInfo')->middleware('role:User');
         Route::get('/profile' , [UserController::class , 'showProfile'])->name('Profile');
-    });
+
+    }); 
 
 Route::get('/{digitalproduct}' , [IndexController::class , 'read_more']) -> name('read_more');
