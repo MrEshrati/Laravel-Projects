@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Usage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,5 +28,7 @@ class UsageSeeder extends Seeder
             [ 'name' => 'Network system administration' ],    
 
         ];
+
+        Usage::insert($usages);
     }
 }

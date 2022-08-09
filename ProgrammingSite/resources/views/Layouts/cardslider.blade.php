@@ -1,78 +1,43 @@
-
 <div class="container">
 <input type="radio" name="dot" id="one">
 <input type="radio" name="dot" id="two">
 <div class="main-card">
     <div class="cards">
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!--- <img src="images/img1.jpg" alt="">-->
+        @for($i = 0; $i <= 2 ; $i++)
+
+            <a class="card" href="#"><div>
+                <div class="content">
+                    <div class="img">
+                        <img src="{{ asset($Languages[$i]->image_url) }}"/>
+                    </div>
+                    <div class="details">
+                        <div class="name">{{ $Languages[$i]->name }}</div>
+                        <div class='description'>{{ $Languages[$i]->description }}</div>
+                    </div>
                 </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!--- <img src="images/img2.jpg" alt="">--->
-                </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!-- <img src="images/img3.jpg" alt="">---->
-                </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="cards">
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!---<img src="images/img4.jpg" alt="">--->
-                </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!--<img src="images/img5.jpg" alt="">---->
-                </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="content">
-                <div class="img">
-                    <!--<img src="images/img6.jpeg" alt="">--->
-                </div>
-                <div class="details">
-                    <div class="name">Language Name</div>
-                    <div class="job">Language Usage</div>
-                </div>
-            </div>
-        </div>
+            </div></a>
+        
+        @endfor        
     </div>
+
+    <div class="cards">
+        @for($i = 3; $i <= 5 ; $i++)
+
+            <a class="card" href="#"><div>
+                <div class="content">
+                    <div class="img">
+                        <img src="{{ asset($Languages[$i]->image_url) }}"/>
+                    </div>
+                    <div class="details">
+                        <div class="name">{{ $Languages[$i]->name }}</div>
+                        <div class='description'>{{ $Languages[$i]->description }}</div>
+                    </div>
+                </div>
+            </div></a>
+        
+        @endfor        
+    </div>
+
 </div>
 <div class="button">
     <label for="one" class=" active one"></label>

@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
             $table -> unsignedBigInteger('company_id')->nullable();
-            $table -> unsignedBigInteger('usage_id')->nullable();
             $table -> string('name');
+            $table -> text('description');
+            $table -> string('image_url') -> nullable();
             $table->timestamps();
 
             $table
@@ -27,12 +28,6 @@ return new class extends Migration
             -> cascadeOnUpdate()
             -> nullOnDelete();
 
-            $table
-            -> foreign('usage_id')
-            -> references('id')
-            -> on('usages')
-            -> cascadeOnUpdate()
-            -> nullOnDelete();
         });
     }
 

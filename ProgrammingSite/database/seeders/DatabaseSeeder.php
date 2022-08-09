@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CompanySeeder::class);
         $this->call(UsageSeeder::class);
-        $this->call(LangaugeSeeder::class);
+        $this->call(LanguageSeeder::class);
+        $this->call(LanguageUsageSeeder::class);
 
     }
 }

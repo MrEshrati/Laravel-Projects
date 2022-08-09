@@ -11,11 +11,6 @@ class Language extends Model
 
     public function company(){
 
-        return $this -> belongsTo(Company::class);
-    }
-
-    public function usage(){
-
-        return $this -> belongsTo(Usage::class);
+        return $this ->belongsTo(Company::class);
     }
 }
