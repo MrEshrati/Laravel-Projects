@@ -5,7 +5,7 @@
     <div class="cards">
         @for($i = 0; $i <= 2 ; $i++)
 
-            <a class="card" href="#"><div>
+            <a class="card" href="{{ route('read_more' , $Languages[$i]->id) }}"><div>
                 <div class="content">
                     <div class="img">
                         <img src="{{ asset($Languages[$i]->image_url) }}"/>
@@ -23,7 +23,7 @@
     <div class="cards">
         @for($i = 3; $i <= 5 ; $i++)
 
-            <a class="card" href="#"><div>
+            <a class="card" href="{{ route('read_more' , $Languages[$i]->id) }}"><div>
                 <div class="content">
                     <div class="img">
                         <img src="{{ asset($Languages[$i]->image_url) }}"/>

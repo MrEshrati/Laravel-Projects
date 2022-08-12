@@ -25,7 +25,7 @@ class CompanySeeder extends Seeder
             ],
 
             [
-                'name' => 'Masds Torgersen (Microsoft)',
+                'name' => 'Mads Torgersen',
                 'email' => 'wehelp@microsoft.com',
                 'phone' => '+1 (800) 642 7676',
                 'description' => 'Mads Torgersen is a senior program manager at Microsoft. As the program manager for the C# language, he runs the C# language design meetings and maintains the C# language specification.'
