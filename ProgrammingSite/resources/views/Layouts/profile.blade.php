@@ -7,47 +7,60 @@
     @include('Layouts.links')
 </head>
 <body>
-    <header>
+    <header class="main-header">
         @include('Layouts.header')
     </header>
 
     <div class="main-profile">
-        <div class="container d-flex justify-content-center">
-            <div class="card-profile p-3 py-4">
-                <div class="text-center"> 
-                    <img src="https://imgs.search.brave.com/ANyA2zXHibQvnQliNTO2qEW_-jn2rZfc3RV_-cUQMyU/rs:fit:860:900:1/g:ce/aHR0cDovL3d3dy5w/bmdhbGwuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy81L1Byb2Zp/bGUtQXZhdGFyLVBO/Ry5wbmc" width="100" class="rounded-circle">
-                    <h3 class="mt-2">{{ $auth->name }}</h3>
-                </div>
-                       
+
+        <div class="card-profile p-3 py-4">
+            <div class="text-center"> 
+                <img src="https://imgs.search.brave.com/ANyA2zXHibQvnQliNTO2qEW_-jn2rZfc3RV_-cUQMyU/rs:fit:860:900:1/g:ce/aHR0cDovL3d3dy5w/bmdhbGwuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy81L1Byb2Zp/bGUtQXZhdGFyLVBO/Ry5wbmc" width="100" class="rounded-circle">
+                <h3 class="mt-2">{{ $auth->name }}</h3>
             </div>
+                    
         </div>
+
         <div class="interests-div">
-          <label class="usage-label">Usages :</label>
+          <label class="usage-label">Interests :</label>
           <p class="usages-name">
-            @foreach ($Usages as $Use)
+            @for ($i = 0; $i < count($usages);$i++)
 
-              @for($i = 0; $i < $Usage->count();$i++)
-                @if($Use->id == $Usage[$i]->usage_id) 
-                  @if ($i == $Usage->count()-1 || $Usage->count() < 1)
-                      
-                    {{ $Use->name }} 
+                @if ($i == count($usages)-1 || count($usages) < 1)
+                    
+                    {{ $usages[$i]->name }} 
 
-                  @else
-                  
-                    {{ $Use->name }} -
-                      
-                  @endif
-                  @endif
-              @endfor
-            @endforeach
+                @else
+                
+                    {{ $usages[$i]->name }} -
+                    
+                @endif
+                
+            @endfor
           </p>
         </div>
-        <div>
-          <label class="usage-label">We Suggest To You</label>
+        <div class="lan-suggest">
+            <label class="usage-label">We Suggest To You :</label>
+          
+            <div class="suggest-card mt-3">
+                <div class="suggest-inner-div">
+                
+                    @foreach ($suggestedLanguages as $suggest)
+                
+                        <a href="{{ route('read_more' , $suggest) }}"><img src="{{ asset($suggest->image_url) }}"></a>
+                        <label>{{ $suggest->name }}</label>
+                        <div class="lan-seperator"></div>
+                    @endforeach
+                </div>
+            </div>
+                   
+        </div>
     </div>
 
     <footer>
         @include('Layouts.footer')
     </footer>
+
+    <script src="/js/script.js"></script>
 </body>
 </html>

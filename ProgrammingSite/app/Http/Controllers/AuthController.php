@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Usage;
 use App\Models\User;
+use App\Models\UserUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,8 +29,17 @@ class AuthController extends Controller{
 
             if (Hash::check($request -> safe()['password'], $user -> password)){
 
+                $Usages = UserUsage::where('user_id' , '=' , $user->id)->get();
                 Auth::login($user);
-                return redirect() -> route(('home'));
+
+                if (count($Usages) == 0){
+
+                    return redirect() -> route('interests');
+                } else {
+
+                    return redirect() -> route('home');
+                }
+
             }
         }
 

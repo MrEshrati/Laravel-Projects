@@ -29,4 +29,7 @@ Route::group(
     ]
     ,function(){
         Route::get('/profile' , [UserController::class, 'Profile'])->name('profile');
+        Route::get('/interests' , [UserController::class, 'Interests'])->name('interests');
+        Route::post('/saveinterests' , [UserController::class, 'saveInterests'])->name('interests.save');
+
     });

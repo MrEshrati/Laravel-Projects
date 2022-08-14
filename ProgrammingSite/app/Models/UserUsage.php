@@ -9,6 +9,11 @@ class UserUsage extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'usage_id',
+    ];
+
     public function user(){
 
         return $this->belongsTo(User::class);

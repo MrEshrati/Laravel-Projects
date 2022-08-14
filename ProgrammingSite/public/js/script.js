@@ -2,7 +2,6 @@ window.onload = function() {
     window.scrollTo(0, 0);
 };
 
-
 if (window.location.href === 'http://127.0.0.1:8000/'){
     var typed = new Typed('.auto-type' , {
 
@@ -12,7 +11,6 @@ if (window.location.href === 'http://127.0.0.1:8000/'){
         loop: true
     })
 }
-
 
 window.addEventListener('scroll' , function(){
 
