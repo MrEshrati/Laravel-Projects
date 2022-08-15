@@ -23,6 +23,7 @@
 
         <div class="interests-div">
           <label class="usage-label">Interests :</label>
+          <a class="edit-a" href="{{ route('interests.edit') }}">Edit</a>
           <p class="usages-name">
             @for ($i = 0; $i < count($usages);$i++)
 

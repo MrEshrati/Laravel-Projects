@@ -8,7 +8,11 @@
             <a href="{{ route('home') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-green-400 font-semibold hover:bg-green-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
             @role('Admin')
                 
-                <a href="#" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-green-400 font-semibold hover:bg-green-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
+                <a href="{{ route('dashboard') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-green-400 font-semibold hover:bg-green-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
+            
+            @elserole('CEO')
+
+                <a href="{{ route('dashboard') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-green-400 font-semibold hover:bg-green-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Dashboard </a>
 
             @endrole
 

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::group(
     ,function(){
         Route::get('/profile' , [UserController::class, 'Profile'])->name('profile');
         Route::get('/interests' , [UserController::class, 'Interests'])->name('interests');
+        Route::get('/editInterests' , [UserController::class, 'editInterests'])->name('interests.edit');
         Route::post('/saveinterests' , [UserController::class, 'saveInterests'])->name('interests.save');
-
+        Route::get('/dashboard' , [DashboardController::class , 'Index'])->name('dashboard');
+        Route::resource('/dashboard/user', UserController::class);
     });

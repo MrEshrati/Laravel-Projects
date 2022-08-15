@@ -29,6 +29,21 @@ body {
     background-color: #333;
     color: #CCC;
 }
+.edit-a {
+
+  position: absolute;
+  right: 20;
+  top: 24;
+  padding: 5px;
+  font-size: 18px;
+  color: white;
+  transition: 0.2s ease-in;
+}
+
+.edit-a:hover{
+
+  color: blue;
+}
 .head-container {
 
     font-family: 'Poppings' , 'sans-serif';
@@ -747,7 +762,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
   top: 40;
   right: 0;
   background-color: #f1f1f1;
-  min-width: 95px;
+  min-width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 

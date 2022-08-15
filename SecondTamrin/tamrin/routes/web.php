@@ -3,7 +3,6 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\IndexController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
