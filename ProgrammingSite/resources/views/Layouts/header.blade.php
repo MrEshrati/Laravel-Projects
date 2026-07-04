@@ -2,7 +2,7 @@
     <div class="ml-3 mr-3 max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
         <div class="flex items-center px-2 lg:px-0">
-        <div class="hidden lg:block lg:ml-2">
+        <div class="lg:block lg:ml-2">
             <div class="flex">
 
             <a href="{{ route('home') }}" style="transition: 0.2s ease-in-out" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-green-400 font-semibold hover:bg-green-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-white-500 "> Home </a>
