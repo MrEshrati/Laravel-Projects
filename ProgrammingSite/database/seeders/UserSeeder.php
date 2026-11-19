@@ -14,31 +14,42 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run(){
-        
-        Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'CEO']);
-        Role::create(['name' => 'User']);
+    public function run()
+    {
+        $accounts = config('auth.seed_accounts');
+        foreach ($accounts as $role => $credentials) {
+            $password = $credentials['password'];
+            if (!filter_var($credentials['email'], FILTER_VALIDATE_EMAIL)
+                || !is_string($password)
+                || strlen($password) < 12
+                || strlen($password) > 72) {
+                throw new \RuntimeException(
+                    'Set a valid email and a 12–72 byte password for the demo '.$role.' account.'
+                );
+            }
+        }
 
-        $owner = ['name' => 'Owner' , 
-                    'email' => 'REDACTED' ,
-                        'phone' => '00000000000',
-                            'password' => Hash::make('REDACTED')];
-        $ceo = ['name' => 'Arshia' , 
-                    'email' => 'REDACTED' ,
-                        'phone' => '00000000001',
-                            'password' => Hash::make('REDACTED')];
-        $user = ['name' => 'Paul' ,
-                    'email' => 'REDACTED' ,
-                        'phone' => '00000000002',
-                            'password' => Hash::make('REDACTED')];
-        
-        $owner = User::create($owner);
-        $ceo = User::create($ceo);
-        $user = User::create($user);
+        $emails = array_map('strtolower', array_column($accounts, 'email'));
+        if (count(array_unique($emails)) !== count($accounts)) {
+            throw new \RuntimeException('Use a different email for each demo account.');
+        }
 
-        $owner -> assignRole(Role::findByName('Admin'));
-        $ceo -> assignRole(Role::findByName('CEO'));
-        $user -> assignRole(Role::findByName('User'));
+        $profiles = [
+            'admin' => ['name' => 'Owner', 'role' => 'Admin', 'phone' => '00000000000'],
+            'ceo' => ['name' => 'Demo CEO', 'role' => 'CEO', 'phone' => '00000000001'],
+            'user' => ['name' => 'Demo User', 'role' => 'User', 'phone' => '00000000002'],
+        ];
+
+        \Illuminate\Support\Facades\DB::transaction(function () use ($accounts, $profiles) {
+            foreach ($profiles as $account => $profile) {
+                $role = Role::firstOrCreate(['name' => $profile['role']]);
+                unset($profile['role']);
+                $user = User::create(array_merge($profile, [
+                    'email' => $accounts[$account]['email'],
+                    'password' => Hash::make($accounts[$account]['password']),
+                ]));
+                $user->assignRole($role);
+            }
+        });
     }
 }

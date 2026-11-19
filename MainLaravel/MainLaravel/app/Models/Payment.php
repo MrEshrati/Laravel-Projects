@@ -18,15 +18,12 @@ class Payment extends Model {
             'callback' => 'http://127.0.0.1:8000/callback',
           );
           
+          $headers = $this->headers();
           $ch = curl_init();
           curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
           curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'X-API-KEY: REDACTED',
-            'X-SANDBOX: 1'
-          ));
+          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
           
           $result = curl_exec($ch);
           curl_close($ch);
@@ -43,18 +40,26 @@ class Payment extends Model {
         'order_id' => $transaction_id,
       );
       
+      $headers = $this->headers();
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment/verify');
       curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'X-API-KEY: REDACTED',
-        'X-SANDBOX: 1',
-      ));
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
       
       $result = curl_exec($ch);
       curl_close($ch);
     }
 
+    private function headers(): array
+    {
+        $key = config('services.idpay.key');
+        abort_unless(is_string($key) && trim($key) !== '', 503, 'Payment is not configured.');
+
+        return [
+            'Content-Type: application/json',
+            'X-API-KEY: '.$key,
+            'X-SANDBOX: 1',
+        ];
+    }
 }

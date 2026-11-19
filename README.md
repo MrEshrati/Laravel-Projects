@@ -13,4 +13,8 @@ Use PHP, Composer, Node.js, npm, and a local MySQL database. Check each project'
 
 From the directory of the project you want to explore, run `composer install`, copy `.env.example` to `.env`, then set the local database connection. Run `php artisan key:generate`, `php artisan migrate`, and `npm install`. Build MainLaravel's Mix assets with `npm run dev`. Build ProgrammingSite's Vite assets with `npm run build` or run its development server with `npm run dev`. Start the Laravel application with `php artisan serve`.
 
-Review the sample seeders and payment configuration before exercising those features. Use local data and development credentials.
+## Demo accounts and payments
+
+Before running `php artisan db:seed` on a fresh database, set `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD`, `SEED_USER_EMAIL`, and `SEED_USER_PASSWORD` in the project's local `.env`. ProgrammingSite also uses `SEED_CEO_EMAIL` and `SEED_CEO_PASSWORD`. Use distinct email addresses and passwords between 12 and 72 bytes.
+
+MainLaravel's payment example stays in IDPay sandbox mode. Set `IDPAY_API_KEY` in MainLaravel's local `.env` to try it.

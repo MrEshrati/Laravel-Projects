@@ -14,21 +14,41 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run(){
-        
-        Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'User']);
+    public function run()
+    {
+        $accounts = config('auth.seed_accounts');
+        foreach ($accounts as $role => $credentials) {
+            $password = $credentials['password'];
+            if (!filter_var($credentials['email'], FILTER_VALIDATE_EMAIL)
+                || !is_string($password)
+                || strlen($password) < 12
+                || strlen($password) > 72) {
+                throw new \RuntimeException(
+                    'Set a valid email and a 12–72 byte password for the demo '.$role.' account.'
+                );
+            }
+        }
 
-        $admin = ['name' => 'admin' , 'email' => 'REDACTED' , 
-        'password' => Hash::make('REDACTED')];
+        $emails = array_map('strtolower', array_column($accounts, 'email'));
+        if (count(array_unique($emails)) !== count($accounts)) {
+            throw new \RuntimeException('Use a different email for each demo account.');
+        }
 
-        $user = ['name' => 'arshia' , 'email' => 'REDACTED' , 
-        'password' => Hash::make('REDACTED')];
+        $profiles = [
+            'admin' => ['name' => 'Administrator', 'role' => 'Admin'],
+            'user' => ['name' => 'Demo User', 'role' => 'User'],
+        ];
 
-        $admin = User::create($admin);
-        $user = User::create($user);
-
-        $admin -> assignRole(Role::findByName('Admin'));
-        $user -> assignRole(Role::findByName('User'));
+        \Illuminate\Support\Facades\DB::transaction(function () use ($accounts, $profiles) {
+            foreach ($profiles as $account => $profile) {
+                $role = Role::firstOrCreate(['name' => $profile['role']]);
+                unset($profile['role']);
+                $user = User::create(array_merge($profile, [
+                    'email' => $accounts[$account]['email'],
+                    'password' => Hash::make($accounts[$account]['password']),
+                ]));
+                $user->assignRole($role);
+            }
+        });
     }
 }
