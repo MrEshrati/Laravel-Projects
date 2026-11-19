@@ -18,3 +18,7 @@ From the directory of the project you want to explore, run `composer install`, c
 Before running `php artisan db:seed` on a fresh database, set `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD`, `SEED_USER_EMAIL`, and `SEED_USER_PASSWORD` in the project's local `.env`. ProgrammingSite also uses `SEED_CEO_EMAIL` and `SEED_CEO_PASSWORD`. Use distinct email addresses and passwords between 12 and 72 bytes.
 
 MainLaravel's payment example stays in IDPay sandbox mode. Set `IDPAY_API_KEY` in MainLaravel's local `.env` to try it.
+
+## License
+
+The [MIT License](LICENSE) covers MrEshrati's original code and documentation for both applications. The [Laravel 8 starter](https://github.com/laravel/laravel/blob/8.x/composer.json) and [Laravel 9 starter](https://github.com/laravel/laravel/blob/9.x/composer.json) declare their own MIT terms for upstream materials. Third-party course materials and media are outside this grant.
